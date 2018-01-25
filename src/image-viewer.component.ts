@@ -35,6 +35,11 @@ import { ImageViewerEnter, ImageViewerLeave } from './image-viewer-transitions';
 	template: `
 		<ion-header no-border>
 			<ion-navbar>
+                <ion-buttons end>
+                    <button ion-button icon-only (click)="downloadClick()">
+                        <ion-icon name="pdf-download"></ion-icon>
+					</button>
+				</ion-buttons>
 			</ion-navbar>
 		</ion-header>
 
@@ -118,5 +123,11 @@ export class ImageViewerComponent extends Ion implements OnInit, OnDestroy, Afte
 		if (this._navParams.get('enableBackdropDismiss')) {
 			this._nav.pop();
 		}
+	}
+
+	downloadClick() {
+        if (this._navParams.get('onDownloadButtonClickCallBack')) {
+            this._navParams.get('onDownloadButtonClickCallBack')();
+        }
 	}
 }
